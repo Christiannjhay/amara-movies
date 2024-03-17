@@ -3,10 +3,10 @@ import TrendingLabel from "./trendingLabel";
 import TrendingMoviesCard from "./trendingMoviesCard";
 
 function Trending() {
-    return(
+    return (
         <div>
-            <TrendingLabel/>
-            <TrendingMoviesCard/>
+            <TrendingLabel />
+            <TrendingMoviesCard />
         </div>
     );
 }
