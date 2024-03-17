@@ -20,13 +20,16 @@ function TrendingMoviesCard() {
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-4 my-5 mx-5">
-      {movies.map(movie => (
-        <div key={movie.id} className="bg-white shadow-md rounded-lg p-2">
-          <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className="w-full h-auto rounded-md mb-2" />
-          <h2 className="text-lg font-semibold mb-1">{movie.title}</h2>
-        </div>
-      ))}
+  {movies.map(movie => (
+    <div 
+      key={movie.id} 
+      className="bg-white shadow-md rounded-lg p-2 hover:transform hover:scale-105 transition duration-300"
+    >
+      <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className="w-full h-auto rounded-md mb-2" />
+      <h2 className="text-lg font-semibold mb-1">{movie.title}</h2>
     </div>
+  ))}
+</div>
   );
 }
 
