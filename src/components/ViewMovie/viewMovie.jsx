@@ -1,36 +1,45 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function ViewMovie() {
-    const { id } = useParams();
-    const [movieDetails, setMovieDetails] = useState(null);
+  const { id } = useParams();
+  const [movieDetails, setMovieDetails] = useState(null);
 
-    useEffect(() => {
-        const options = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM0NDRkNDQ5ZmRkOGQ4NGUzMDMzNGZhN2U1OTFmOCIsInN1YiI6IjY1ZjY1ZmI1ZTIxMDIzMDE3ZWVlMDJkNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z1fa1jT_-JUEe0N6UNX-wdvspwCNH0j4hUpE4eg6-VI'
-            }
-        };
+  useEffect(() => {
+    const fetchMovieDetails = async () => {
+      try {
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`);
+        const movieData = await response.json();
+        setMovieDetails(movieData);
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+      }
+    };
 
-        fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
-            .then(response => response.json())
-            .then(response => setMovieDetails(response))
-            .catch(err => console.error(err));
-    }, [id]);
+    fetchMovieDetails();
+  }, [id]);
 
-    if (!movieDetails) {
-        return <div>Loading...</div>;
-    }
+  if (!movieDetails) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <div>
-            <img src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`} alt={movieDetails.title} />
-            <h1>{movieDetails.title}</h1>
-            <p>{movieDetails.overview}</p>
-        </div>
-    );
+  return (
+    <div className='ml-5 mr-5 justify-center items-center'>
+     <iframe
+        width="70%"
+        height="700"
+        src={`https://vidsrc.to/embed/movie/${id}`}
+        frameBorder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        title="Movie"
+      />
+      <h1>{movieDetails.title}</h1>
+      <p>{movieDetails.overview}</p>
+
+      
+    </div>
+  );
 }
 
 export default ViewMovie;
