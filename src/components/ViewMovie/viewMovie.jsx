@@ -33,11 +33,14 @@ function ViewMovie() {
     return <div>Loading...</div>;
   }
 
+  const backdropUrl = `https://image.tmdb.org/t/p/original${movieDetails.backdrop_path}`;
+
+
   return (
 
     <div className='w-full'>
 
-      <div className='bg-orange-500 flex justify-center content-center'>
+      <div className='flex justify-center content-center bg-cover bg-no-repeat h-[800px] opacity-90' style={{backgroundImage: `url(${backdropUrl})` }}>
         <iframe
           width="70%"
           height="700"

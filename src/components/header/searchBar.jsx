@@ -10,7 +10,7 @@ function SearchBar() {
   };
 
   const handleSearchClick = () => {
-    // Navigate to search results with the search term
+    setSearchTerm('');
     navigate(`/search-results?query=${searchTerm}`);
   };
 
