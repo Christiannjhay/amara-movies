@@ -24,7 +24,7 @@ function TrendingMoviesCard() {
             {movies.map(movie => (
                 <button
                     key={movie.id}
-                    className="bg-white shadow-md rounded-lg p-2 hover:transform hover:scale-105 transition duration-300"
+                    className="text-white bg-transparent rounded-lg p-2 hover:transform hover:scale-105 transition duration-300"
                     onClick={() => {
                         console.log('Clicked movie ID:', movie.id);
                         navigate(`/view-movie/${movie.id}`);

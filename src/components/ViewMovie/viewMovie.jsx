@@ -29,15 +29,12 @@ function ViewMovie() {
         width="70%"
         height="700"
         src={`https://vidsrc.to/embed/movie/${id}`}
-        frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
         title="Movie"
       />
       <h1>{movieDetails.title}</h1>
       <p>{movieDetails.overview}</p>
-
-      
     </div>
   );
 }

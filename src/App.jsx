@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <BrowserRouter> <div className='w-full'>
+    <BrowserRouter> <div className='w-full bg-[#181818]'>
         <Header />
         <Routes> 
           <Route path="/" element={<Trending />} />  
