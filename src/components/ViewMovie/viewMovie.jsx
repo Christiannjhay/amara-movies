@@ -8,7 +8,15 @@ function ViewMovie() {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`);
+        const options = {
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMmM0NDRkNDQ5ZmRkOGQ4NGUzMDMzNGZhN2U1OTFmOCIsInN1YiI6IjY1ZjY1ZmI1ZTIxMDIzMDE3ZWVlMDJkNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.z1fa1jT_-JUEe0N6UNX-wdvspwCNH0j4hUpE4eg6-VI`,
+          },
+        };
+
+        const response = await fetch(`https://api.themoviedb.org/3/movie/${id}`, options);
         const movieData = await response.json();
         setMovieDetails(movieData);
       } catch (error) {
@@ -16,7 +24,9 @@ function ViewMovie() {
       }
     };
 
-    fetchMovieDetails();
+    if (id) {
+      fetchMovieDetails();
+    }
   }, [id]);
 
   if (!movieDetails) {
@@ -24,19 +34,29 @@ function ViewMovie() {
   }
 
   return (
-    <div className='ml-5 mr-5 justify-center items-center'>
-     <iframe
-        width="70%"
-        height="700"
-        src={`https://vidsrc.to/embed/movie/${id}`}
-        allow="autoplay; fullscreen; picture-in-picture"
-        allowFullScreen
-        title="Movie"
-      />
-      <h1>{movieDetails.title}</h1>
-      <p>{movieDetails.overview}</p>
+
+    <div className='w-full'>
+
+      <div className='bg-orange-500 flex justify-center content-center'>
+        <iframe
+          width="70%"
+          height="700"
+          src={`https://vidsrc.to/embed/movie/${id}`}
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          title="Movie"
+        />
+      </div>
+
+      <div className='flex justify-start content-start'>
+        <h1 className='font-bold'>{movieDetails.title}</h1>
+        <p>{movieDetails.overview}</p>
+      </div>
+
     </div>
+
   );
 }
+
 
 export default ViewMovie;
